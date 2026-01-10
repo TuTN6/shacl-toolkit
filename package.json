@@ -1,0 +1,44 @@
+{
+  "name": "shacl-person-data-management",
+  "version": "1.0.0",
+  "description": "SHACL-based Person data management system with Fuseki integration",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test-suite.js",
+    "demo": "node index.js",
+    "validate": "node -e \"import('./test-suite.js').then(m => m.runTests())\"",
+    "lint": "eslint *.js"
+  },
+  "keywords": [
+    "rdf",
+    "shacl",
+    "semantic-web",
+    "fuseki",
+    "sparql",
+    "linked-data",
+    "knowledge-graph",
+    "turtle",
+    "json-ld",
+    "data-validation",
+    "apache-jena"
+  ],
+  "author": "SHACL Data Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/example/shacl-person-data"
+  },
+  "bugs": {
+    "url": "https://github.com/example/shacl-person-data/issues"
+  },
+  "homepage": "https://github.com/example/shacl-person-data#readme"
+}
