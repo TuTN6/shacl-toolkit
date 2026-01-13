@@ -18,6 +18,7 @@ A comprehensive JavaScript implementation for managing Person data with SHACL 1.
 ## 🌟 Overview
 
 This system provides a complete solution for:
+
 - Managing Person entities in source and target RDF formats
 - Transforming data between namespaces (ex: → Person:/Class:)
 - Calculating derived properties (fullName, age)
@@ -201,6 +202,7 @@ Fuseki Triple Store
 ### Person Class
 
 #### Constructor
+
 ```javascript
 new Person({
   uri?: string,           // Optional, auto-generated if not provided
@@ -211,6 +213,7 @@ new Person({
 ```
 
 #### Properties
+
 - `uri` (getter): Person URI
 - `localName` (getter): Local name from URI
 - `firstName` (getter/setter): First name
@@ -220,6 +223,7 @@ new Person({
 - `fullName` (getter): Derived full name
 
 #### Methods
+
 - `getAge(referenceDate?: Date): number` - Calculate age
 - `validate(): {valid: boolean, errors: string[]}` - Validate data
 - `toTurtle(includePrefix?: boolean): string` - Export to Turtle
@@ -228,6 +232,7 @@ new Person({
 - `toString(): string` - String representation
 
 #### Static Methods
+
 - `fromJSON(obj: Object): Person`
 - `fromTurtle(turtle: string): Person`
 - `fromJsonLd(jsonLd: Object): Person`
@@ -235,6 +240,7 @@ new Person({
 ### TransformedPerson Class
 
 #### Constructor
+
 ```javascript
 new TransformedPerson({
   uri?: string,        // Optional, auto-generated if not provided
@@ -246,15 +252,18 @@ new TransformedPerson({
 ```
 
 #### Properties
+
 - `uri`, `localName`, `firstName`, `lastName`, `fullName`, `age` (getters/setters)
 
 #### Methods
+
 - `validate(): {valid: boolean, errors: string[]}`
 - `toTurtle(includePrefix?: boolean): string`
 - `toJSON(): Object`
 - `toJsonLd(): Object`
 
 #### Static Methods
+
 - `fromPerson(person: Person, referenceDate?: Date): TransformedPerson`
 - `fromJSON(obj: Object): TransformedPerson`
 - `fromTurtle(turtle: string): TransformedPerson`
@@ -264,6 +273,7 @@ new TransformedPerson({
 All methods are static:
 
 #### Registration
+
 ```javascript
 DataModel.registerClass(
   name: string,
@@ -278,6 +288,7 @@ DataModel.registerClass(
 ```
 
 #### Instance Management
+
 ```javascript
 DataModel.create(className: string, data: Object): Object
 DataModel.getInstances(className: string): Array
@@ -286,6 +297,7 @@ DataModel.clearAll(): void
 ```
 
 #### Transformation & Validation
+
 ```javascript
 DataModel.transform(instance: Object, targetClassName: string, options?: Object): Object
 DataModel.validateInstance(className: string, instance: Object): {valid, errors}
@@ -293,6 +305,7 @@ DataModel.validateAll(className: string): Array
 ```
 
 #### Querying
+
 ```javascript
 DataModel.find(className: string, predicate: Function): Array
 DataModel.findOne(className: string, predicate: Function): Object|null
@@ -300,6 +313,7 @@ DataModel.findByUri(className: string, uri: string): Object|null
 ```
 
 #### Import/Export
+
 ```javascript
 DataModel.exportToJSON(className?: string): Object
 DataModel.exportToTurtle(className?: string): string
@@ -307,6 +321,7 @@ DataModel.importFromJSON(className: string, data: Array): Array
 ```
 
 #### Statistics
+
 ```javascript
 DataModel.getStatistics(): Object
 DataModel.getClassMetadata(className: string): Object
@@ -315,6 +330,7 @@ DataModel.getClassMetadata(className: string): Object
 ### FusekiConnector Class
 
 #### Constructor
+
 ```javascript
 new FusekiConnector({
   baseUrl: string,      // e.g., 'http://localhost:3030'
@@ -328,11 +344,13 @@ createLocalConnector(dataset?: string): FusekiConnector
 ```
 
 #### Properties
+
 - `queryEndpoint` (getter): SPARQL query endpoint URL
 - `updateEndpoint` (getter): SPARQL update endpoint URL
 - `dataEndpoint` (getter): Data endpoint URL
 
 #### SPARQL Operations
+
 ```javascript
 async query(sparql: string): Promise<Object>
 async construct(sparql: string, format?: string): Promise<string>
@@ -341,6 +359,7 @@ async update(sparql: string): Promise<void>
 ```
 
 #### Data Operations
+
 ```javascript
 async insert(data: string, contentType?: string, graph?: string): Promise<void>
 async save(object: Object, graph?: string): Promise<void>
@@ -350,6 +369,7 @@ async clear(graph?: string): Promise<void>
 ```
 
 #### Utility Methods
+
 ```javascript
 async findByType(rdfType: string): Promise<Array<string>>
 async findByPattern(pattern: string, prefixes?: Object): Promise<Object>
@@ -505,6 +525,7 @@ fuseki-server --loc=./data /test
 ### Configuration
 
 The default configuration connects to:
+
 - **Base URL**: `http://localhost:3030`
 - **Dataset**: `test`
 
@@ -574,6 +595,7 @@ node index.js
 ### Test Coverage
 
 The test suite includes:
+
 - ✅ Person class creation and validation
 - ✅ Age calculation with birthday logic
 - ✅ TransformedPerson creation and validation
@@ -613,10 +635,12 @@ The test suite includes:
 The system is based on a comprehensive SHACL 1.2 schema that includes:
 
 ### Shapes
+
 - `ex:PersonTransformationShape` - Transforms source to target
 - `ex:TargetPersonShape` - Validates transformed data
 
 ### Rules
+
 1. Transform subject URI (ex: → Person:)
 2. Copy firstName property
 3. Copy lastName property
@@ -624,11 +648,13 @@ The system is based on a comprehensive SHACL 1.2 schema that includes:
 5. Calculate age from birthDate
 
 ### Node Expressions
+
 - Full name concatenation
 - Age calculation with birthday logic
 - Namespace transformation
 
 ### Constraints
+
 - Property existence and cardinality
 - Datatype validation
 - Pattern matching
