@@ -1,1 +1,3 @@
+# JavaScript Generator
+
 Using the generated SHACL, create a corresponding set of JavaScript classes using contemporary ECMAScript, with getters (and setters where appropriate), including a global DataModel class for managing otherwise unbound SHACL classes. Include relevant documentation, test data and a test suite. Additionally include a Connector class that lets the user connect to a triple store (target Jena/Fuseki specifically) to save and retrieve content.

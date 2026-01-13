@@ -1,6 +1,8 @@
+# SHACL Generator
+
 Given a source Turtle RDF file of:
 
-```
+```turtle
 prefix ex: <http://example.com/ex#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
@@ -13,7 +15,7 @@ ex:JaneDoe a ex:Person ;
 
 and a target Turtle RDF file of:
 
-```
+```turtle
 prefix Person: <http://example.com/ns/Person#>
 prefix Class: <http://example.com/ns/Class#>
 prefix ex: <http://example.com/ex#>
@@ -27,4 +29,4 @@ Person:JaneDoe a Class:Person ;
    .
 ```
 
-Generate a SHACL 1.2 file using https://www.w3.org/TR/shacl12-core/ including node expressions. Include sh:codeIdentifier, sh:name and sh:description resources, and be as comprehensive as possible.
+Generate a SHACL 1.2 file using [SHACL 1.2 Core](https://www.w3.org/TR/shacl12-core/) including node expressions. Include sh:codeIdentifier, sh:name and sh:description resources, and be as comprehensive as possible.
